@@ -5,12 +5,17 @@ html {
   font-family: "Open Sans", sans-serif;
 }
 
+html a, html a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 html h1 {
   font-size: 5rem;
 }
 
 html h3 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 body nav {
@@ -45,10 +50,11 @@ body section.hero .img-container img {
 
 body section.hero h3 {
   position: absolute;
-  color: #f1485b;
   padding: 1rem;
-  bottom: 25%;
+  bottom: 40%;
   text-align: center;
+  background-color: #f1485b;
+  text-transform: uppercase;
 }
 
 body section.hero p {
@@ -86,4 +92,24 @@ body section.latest-blogs .article-tile .img-container img {
 
 body section.latest-blogs .article-tile p {
   padding: 1rem;
+}
+
+body .login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body .login-page h1 {
+  margin-bottom: 2rem;
+}
+
+body .login-page form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+body .login-page form * {
+  margin: 1rem;
 }

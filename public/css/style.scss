@@ -10,13 +10,18 @@ html {
   color: $font;
   background-color: $primary;
   font-family: "Open Sans", sans-serif;
+  
+  a, a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
 
   h1 {
     font-size: 5rem;
   }
 
   h3 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
@@ -54,11 +59,13 @@ body {
 
     h3 {
       position: absolute;
-      color: $secondary;
       padding: $padding;
-      bottom: 25%;
+      bottom: 40%;
       text-align: center;
+      background-color: $secondary;
+      text-transform: uppercase;
     }
+
 
     p {
         position: relative;
@@ -101,6 +108,27 @@ body {
         }
 
 
+    }
+
+
+    .login-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        margin-bottom: 2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        * {
+            margin: 1rem;
+        }
+      }
     }
 
 }
