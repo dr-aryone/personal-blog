@@ -113,3 +113,13 @@ body .login-page form {
 body .login-page form * {
   margin: 1rem;
 }
+
+body .dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body .dashboard-page a {
+  margin-bottom: 2rem;
+}
