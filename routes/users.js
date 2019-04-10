@@ -79,6 +79,7 @@ router.post("/register", (req, res) => {
             if (err) throw err;
             //Set password to hashed
             newUser.password = hash;
+            
             //save user to database
             newUser
               .save()

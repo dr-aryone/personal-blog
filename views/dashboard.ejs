@@ -4,13 +4,15 @@
         <h3>Dashboard</h3>
         <p>Welcome Jack</p>
         <a href="/users/logout">Logout</a>
-        <p>This is your Dashboard where you can view all of the songs that you have favourited. </p>
+        <p>This is your Dashboard where you can view all of the blogs you have uploaded as well as write new ones </p>
     </div>
 
     <div class="create-blog">
         <form action="/post-article" method="POST">
-            <input type="text" placeholder="Title">
-            <textarea name="article-body" id="article-body" cols="60" rows="30">
+            <input type="text" placeholder="Title" id="title" name="title">
+            <input type="text" placeholder="Author" id="author" name="author">
+            <input type="datetime-local" id="time" name="time">
+            <textarea id="body" cols="60" rows="30" name="body">
 
             </textarea>
             <button type="submit">
