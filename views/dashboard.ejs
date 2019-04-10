@@ -1,6 +1,26 @@
 <section class="dashboard-page">
-    <h3>Dashboard</h3>
-    <p>Welcome <%= name %></p>
-    <a href="/users/logout">Logout</a>
-    <p>This is your Dashboard where you can view all of the songs that you have favourited. </p>
+    <div class="content-block-1">
+
+        <h3>Dashboard</h3>
+        <p>Welcome Jack</p>
+        <a href="/users/logout">Logout</a>
+        <p>This is your Dashboard where you can view all of the songs that you have favourited. </p>
+    </div>
+
+    <div class="create-blog">
+        <form action="/post-article" method="POST">
+            <input type="text" placeholder="Title">
+            <textarea name="article-body" id="article-body" cols="60" rows="30">
+
+            </textarea>
+            <button type="submit">
+                Post Article
+            </button>
+
+        </form>
+    </div>
+
+    <div class="article-list">
+
+    </div>
 </section>

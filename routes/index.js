@@ -6,11 +6,20 @@ router.get('/', (req, res) => {
     res.render('home');
 })
 
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
+
+// ensureAuthenticated, is required to auth the page
+router.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard
-        name: req.user.name
+        // name: req.user.name
     });
 })
+
+
+// TO BE DONE 1111111111111111111111
+// router.post('/article-posted', (req, res) => {
+
+// })
+
 
 module.exports = router;
