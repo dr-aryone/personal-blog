@@ -1,26 +1,53 @@
 const express = require('express');
 const { ensureAuthenticated } = require('../config/auth');
-const { findArticles } = require('../controllers/article_database');
-const { response } = require('../controllers/article_database');
 const router = express.Router();
+
+
 
 //article model
 const Article = require("../models/Article");
+
+// retrieve the existing articles from the database
+function getArticleQuery(name) {
+    let query = Article.find({ author: name });
+    return query;
+}
+
+let articleBody;
+let articleTitle;
+let articleAuthor;
+let articleTime;
+let query = getArticleQuery('Jack F');
+query.exec(function (err, results) {
+    if (err)
+        return console.log(err);
+    results.forEach(function (result) {
+        articleTitle = result.title
+        articleBody = result.body;
+        articleAuthor = result.author;
+        articleTime = result.time
+    });
+});
+
 
 router.get('/', (req, res) => {
     res.render('home');
 })
 
+
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard', ensureAuthenticated, findArticles, (req, res) => {
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
+
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard
         // name: req.user.name
-        
-  
+        articleBody: articleBody,
+        articleTitle: articleTitle,
+        articleAuthor: articleAuthor,
+        articleTime: articleTime
     });
 
-   
+
 })
 
 
@@ -66,6 +93,11 @@ router.post('/post-article', (req, res) => {
             .catch(err => console.log(err));
 }
 
+
 });
+
+
+
+
 
 module.exports = router;
