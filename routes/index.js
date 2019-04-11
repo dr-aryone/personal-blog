@@ -7,25 +7,27 @@ const router = express.Router();
 //article model
 const Article = require("../models/Article");
 
-// retrieve the existing articles from the database
+// retrieve the existing articles from the database - i think this needs to be passed in as middleware on page load
 function getArticleQuery(name) {
     let query = Article.find({ author: name });
     return query;
 }
 
-let articleBody;
-let articleTitle;
-let articleAuthor;
-let articleTime;
+// want to move this to another file and import it in using require 
+let articleBody = [];
+let articleTitle = [];
+let articleAuthor = [];
+let articleTime = [];
 let query = getArticleQuery('Jack F');
 query.exec(function (err, results) {
     if (err)
         return console.log(err);
     results.forEach(function (result) {
-        articleTitle = result.title
-        articleBody = result.body;
-        articleAuthor = result.author;
-        articleTime = result.time
+
+        articleTitle.push(result.title);
+        articleBody.push(result.body);
+        articleAuthor.push(result.author);
+        articleTime.push(result.time);
     });
 });
 
@@ -36,8 +38,8 @@ router.get('/', (req, res) => {
 
 
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
-
+router.get('/dashboard',  (req, res) => {
+    console.log(articleAuthor)
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard
         // name: req.user.name
@@ -45,6 +47,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
         articleTitle: articleTitle,
         articleAuthor: articleAuthor,
         articleTime: articleTime
+        
     });
 
 
