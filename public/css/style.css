@@ -94,6 +94,12 @@ body section.latest-blogs .article-tile p {
   padding: 1rem;
 }
 
+body section.latest-blogs .article-tile .article-tile-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 body .login-page {
   display: flex;
   flex-direction: column;

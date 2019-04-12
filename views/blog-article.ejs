@@ -1,0 +1,23 @@
+<section>
+    
+    <% for(var i =0; i < articleTitle.length; i++) { %>
+        
+        <%if (url.includes(articleTitle[i].replace(' ', '-'))) { %>
+            
+
+            <br>
+        <br>
+        <%= articleTitle[i] %>
+        <br>
+        <br>
+        <%= articleAuthor[i] %>
+        <br>
+        <br>
+        <%= articleBody[i] %>
+        <br>
+        <br>
+<% } %>
+
+<% } %>
+
+</section>

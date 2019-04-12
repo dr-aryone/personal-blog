@@ -32,8 +32,9 @@ query.exec(function (err, results) {
         return console.log(err);
 
     for(var i = 0; i < results.length; i++) {
-        if (!articleID.includes(String(results[i]._id))) {
-                articleID.push(String(results[i]._id));
+        let id = String(results[i]._id);
+        if (!articleID.includes(id)) {
+                articleID.push(id);
                 articleTitle.push(results[i].title);
                 articleBody.push(results[i].body);
                 articleAuthor.push(results[i].author);
@@ -45,14 +46,20 @@ query.exec(function (err, results) {
 });
 
 }
-router.get('/', (req, res) => {
-    res.render('home');
+router.get('/', findAllArticles, (req, res) => {
+    res.render('home', {
+        articleBody: articleBody,
+        articleTitle: articleTitle,
+        articleAuthor: articleAuthor,
+        articleTime: articleTime
+
+    });
 })
 
 
 // ensureAuthenticated, is required to auth the page
 router.get('/dashboard', findAllArticles, (req, res) => {
-    // console.log(articleTitle)
+
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard
         // name: req.user.name
@@ -64,6 +71,17 @@ router.get('/dashboard', findAllArticles, (req, res) => {
     });
 
 
+})
+
+router.get('/blog-article/*', (req, res) => {
+
+    res.render('blog-article', {
+        articleBody: articleBody,
+        articleTitle: articleTitle,
+        articleAuthor: articleAuthor,
+        articleTime: articleTime,
+        url: req.url
+    });
 })
 
 
@@ -112,6 +130,15 @@ router.post('/post-article', (req, res) => {
 
 });
 
+// Delete an article - how tf do i do this
+router.post('/delete-article', (req, res) => {
+    const { remove } = req.body;
+    
+    console.log(remove);
+
+
+    res.redirect('/');
+})
 
 
 

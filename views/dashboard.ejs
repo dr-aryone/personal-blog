@@ -38,6 +38,9 @@
             <p>
                 <%= articleBody[i] %>
             </p>
+            <form action="/delete-article" method="post">
+                <input type="submit" name="remove" id="remove" value="Delete" />
+            </form>
         </div>
         <% } %>
     </div>

@@ -105,6 +105,12 @@ body {
                 padding: $padding;
 
             }
+
+            .article-tile-text {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
         }
 
 
