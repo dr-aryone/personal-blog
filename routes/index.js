@@ -3,43 +3,56 @@ const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
 
 
-
 //article model
 const Article = require("../models/Article");
 
-// retrieve the existing articles from the database - i think this needs to be passed in as middleware on page load
-function getArticleQuery(name) {
-    let query = Article.find({ author: name });
-    return query;
-}
 
-// want to move this to another file and import it in using require 
+// instantiate variables ready to receive data
 let articleBody = [];
 let articleTitle = [];
 let articleAuthor = [];
 let articleTime = [];
-let query = getArticleQuery('Jack F');
+let articleID = [];
+
+// wrap my database call functions in some middleware - right now it is adding each blog to the list again
+// on each page reload - need to think about how I can prevent this so that only new blogs are added
+function findAllArticles(req, res, next){ 
+
+
+// retrieve the existing articles from the database - i think this needs to be passed in as middleware on page load
+function getArticleQuery() {
+    let query = Article.find();
+    return query;
+}
+
+// want to move this to another file and import it in using require 
+let query = getArticleQuery();
 query.exec(function (err, results) {
     if (err)
         return console.log(err);
-    results.forEach(function (result) {
 
-        articleTitle.push(result.title);
-        articleBody.push(result.body);
-        articleAuthor.push(result.author);
-        articleTime.push(result.time);
-    });
+    for(var i = 0; i < results.length; i++) {
+        if (!articleID.includes(String(results[i]._id))) {
+                articleID.push(String(results[i]._id));
+                articleTitle.push(results[i].title);
+                articleBody.push(results[i].body);
+                articleAuthor.push(results[i].author);
+                articleTime.push(results[i].time);
+        }
+    }
+
+    next();
 });
 
-
+}
 router.get('/', (req, res) => {
     res.render('home');
 })
 
 
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard',  (req, res) => {
-    console.log(articleAuthor)
+router.get('/dashboard', findAllArticles, (req, res) => {
+    // console.log(articleTitle)
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard
         // name: req.user.name
