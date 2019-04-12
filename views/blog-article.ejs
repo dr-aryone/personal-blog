@@ -1,22 +1,25 @@
-<section>
+<section class="blog-article">
     
     <% for(var i =0; i < articleTitle.length; i++) { %>
         
-        <%if (url.includes(articleTitle[i].replace(' ', '-'))) { %>
+        <%if (url.includes(articleTitle[i].split(' ').join('-'))) { %>
             
+        <h3>
+            <%= articleTitle[i] %>
+        </h3>    
+        <div>
+            <span>
+                <%= articleAuthor[i] %>
+            </span>
+            <span>
+                <%= articleTime[i] %>
+            </span>
+        </div>    
+        <p>
+            <%= articleBody[i] %>
+        </p>
 
-            <br>
-        <br>
-        <%= articleTitle[i] %>
-        <br>
-        <br>
-        <%= articleAuthor[i] %>
-        <br>
-        <br>
-        <%= articleBody[i] %>
-        <br>
-        <br>
-<% } %>
+    <% } %>
 
 <% } %>
 

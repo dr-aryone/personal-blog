@@ -1,9 +1,19 @@
-let articleLink = document.getElementById('article-link');
+let articleLink = document.querySelectorAll('.article-link');
+let articleTitle = document.querySelectorAll('.title')
 
-articleLink.addEventListener('click', setHREF);
+window.addEventListener('load', setHREF);
+
+let titleList = [];
 
 function setHREF() {
-    let link = document.getElementById('title').innerText.replace(' ', '-') ;
-    console.log(link);
-    articleLink.setAttribute('href', `/blog-article/${link}`);
+    articleTitle.forEach((title) => {
+        titleList.push(title.innerText.split(' ').join('-'));
+    })
+
+    console.log(titleList);
+
+    for(var i=0; i< titleList.length; i++) {
+        let link = titleList[i];
+        articleLink[i].setAttribute('href', `/blog-article/${link}`)
+    }
 }
