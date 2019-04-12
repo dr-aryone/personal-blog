@@ -1,4 +1,8 @@
 <section class="blog-article">
+
+   <% if(!articleTitle) {%>
+        <p>Somethings gone wrong...</p>
+    <%}%>
     
     <% for(var i =0; i < articleTitle.length; i++) { %>
         
@@ -9,7 +13,7 @@
         </h3>    
         <div>
             <span>
-                <%= articleAuthor[i] %>
+                Author: <%= articleAuthor[i] %>
             </span>
             <span>
                 <%= articleTime[i] %>

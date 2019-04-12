@@ -14,12 +14,11 @@ let articleAuthor = [];
 let articleTime = [];
 let articleID = [];
 
-// wrap my database call functions in some middleware - right now it is adding each blog to the list again
-// on each page reload - need to think about how I can prevent this so that only new blogs are added
+// wrap my database call functions in some middleware
 function findAllArticles(req, res, next){ 
 
 
-// retrieve the existing articles from the database - i think this needs to be passed in as middleware on page load
+// retrieve the existing articles from the database
 function getArticleQuery() {
     let query = Article.find();
     return query;
@@ -58,7 +57,7 @@ router.get('/', findAllArticles, (req, res) => {
 
 
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard', findAllArticles, (req, res) => {
+router.get('/dashboard', ensureAuthenticated, findAllArticles, (req, res) => {
 
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard
@@ -72,6 +71,15 @@ router.get('/dashboard', findAllArticles, (req, res) => {
 
 
 })
+
+
+router.get('/blogs', (req, res) => {
+    res.render('blogs', {
+        articleTitle: articleTitle,
+        
+    })
+})
+
 
 router.get('/blog-article/*', (req, res) => {
 

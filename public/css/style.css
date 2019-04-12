@@ -71,7 +71,7 @@ body section.latest-blogs {
 
 body section.latest-blogs .article-tile {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-top: 1px solid #5e5e5e;
@@ -95,9 +95,7 @@ body section.latest-blogs .article-tile p {
 }
 
 body section.latest-blogs .article-tile .article-tile-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-right: 3rem;
 }
 
 body .login-page {
@@ -208,5 +206,38 @@ body .blog-article div span {
 }
 
 body .blog-article p {
-  width: 60vw;
+  width: 80vw;
+}
+
+body .blogs-page {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+body .blogs-page .article-box {
+  width: 15vw;
+  height: 15vw;
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #7fa7b8;
+  border-radius: 1rem;
+}
+
+body .blogs-page .article-box .img-container {
+  width: 70%;
+  height: 70%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+body .blogs-page .article-box .img-container img {
+  max-width: 100%;
+  max-height: 100%;
 }
