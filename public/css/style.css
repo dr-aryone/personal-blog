@@ -312,3 +312,26 @@ body .blogs-page .article-box .img-container img {
   max-height: 100%;
   max-width: 100%;
 }
+
+body .about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body .about-page h3 {
+  margin-bottom: 2rem;
+}
+
+body .about-page p {
+  width: 60%;
+  text-align: center;
+}
+
+body .about-page .social-icons {
+  display: flex;
+}
+
+body .about-page .social-icons i {
+  padding: 1rem;
+}

@@ -80,6 +80,10 @@ router.get('/blogs', (req, res) => {
     })
 })
 
+router.get('/about', (req, res) => {
+    res.render('about');
+})
+
 
 router.get('/blog-article/*', (req, res) => {
 

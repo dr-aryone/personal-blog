@@ -347,4 +347,30 @@ body {
         }
       }
     }
+
+    .about-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+
+
+      h3 {
+        margin-bottom: 2rem;
+
+      }
+
+      p {
+        width: 60%;
+        text-align: center;
+      }
+
+      .social-icons {
+        display: flex;
+
+        i {
+          padding: $padding;
+        }
+      }
+    }
 }

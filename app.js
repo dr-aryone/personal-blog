@@ -17,7 +17,9 @@ app.set('view engine', 'ejs');
 require('./config/passport')(passport);
 
 // DB Config
-const db = require('./config/keys').MongoURI;
+// const db = require('./config/keys').MongoURI;
+
+const db = require('./config/keys').MONGODB_URI;
 
 //connect to Mongo
 mongoose.connect(db, { useNewUrlParser: true })
