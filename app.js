@@ -53,12 +53,6 @@ app.use((req, res, next) => {
     next();
 });
 
-require('dotenv').config();
-
-const dbpass = process.env.DB_PASS;
-const mlabpass = process.env.MLAB_PASS;
-
-
 app.use(express.static('public'));
 
 // External routes
