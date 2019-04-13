@@ -5,6 +5,10 @@ $complimentary: #7fa7b8;
 $padding: 1rem;
 $border-radius: 1rem;
 
+$ipadPro: "only screen and (max-width: 900px)";
+$phoneXL: "only screen and (max-width: 600px)";
+$ipad: "only screen and (min-width: 750px)";
+
 html {
   font-size: 16px;
   color: $font;
@@ -22,6 +26,11 @@ html {
 
   h3 {
     font-size: 2rem;
+  }
+
+  .sitewide-container {
+    max-width: 1400px;
+    margin: auto;
   }
 }
 
@@ -44,11 +53,28 @@ body {
   }
 
   section.hero {
+    
+      @media #{$ipad} {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
     .img-container {
       width: 80vw;
-      height: 80vh;
+      height: 60vh;
       overflow: hidden;
       margin: auto;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+
+
+      @media #{$ipad} {
+        margin: 0;
+        width: 30vw;
+        justify-content: flex-start;
+        padding: $padding;
+      }
 
       img {
         max-width: 100%;
@@ -64,12 +90,18 @@ body {
       text-align: center;
       background-color: $secondary;
       text-transform: uppercase;
+
+        @media #{$ipad} {
+          position: relative;
+          height: 10vh;
+          font-size: 10vh;
+      }
     }
 
 
     p {
         position: relative;
-        bottom: 15vh;
+        // bottom: 15vh;
         text-align: center;
         
     }
@@ -82,10 +114,10 @@ body {
   
         .article-tile {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             padding: $padding;
             border-top: 1px solid rgb(94, 94, 94);
+            font-size: 1.5rem;
         
            .img-container {
                min-width: 30vw;
@@ -107,8 +139,10 @@ body {
             }
 
             .article-tile-text {
-
-              margin-right: 3rem;
+              width: 100%;
+              display: flex;
+              padding: 0;
+              justify-content: center;
               
             }
         }
@@ -225,6 +259,8 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: $padding;
+      line-height: 1.5rem;
 
       h3 {
         margin-bottom: 3rem;
@@ -244,6 +280,10 @@ body {
 
       p {
         width: 80vw;
+
+        @media #{$ipad} {
+          width: 70%;
+        }
       }
     
     }
@@ -253,32 +293,56 @@ body {
       display: flex;
       justify-content: flex-start;
       flex-wrap: wrap;
+      width: 80%;
+      margin: auto;
+      padding-left: 10vw;
+      margin-top: 2rem;
+
+
+      @media #{$phoneXL} {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding-left: 0;
+}
 
 
       .article-box {
-        width: 15vw;
+        width: 20vw;
         height: 15vw;
-        margin: 3rem;
+        margin: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        background-color: $complimentary;
-        border-radius: $border-radius;
+        color: $complimentary;
+        background-color: rgb(224, 224, 224);
+       
+      @media #{$ipadPro} {
+        padding: $padding;
+}
+
+      @media #{$phoneXL} {
+        width: 80vw;
+        height: 60vw;
+        padding: 0.5rem;
+      }
 
 
         .img-container {
-          width: 70%;
+          width: 90%;
           height: 70%;
           overflow: hidden;
           display: flex;
           justify-content: center;
           margin-bottom: 1rem;
+          
 
            img {
-             max-width: 100%;
-             max-height: 100%;
+            border: 1px solid rgb(124, 124, 124); 
+            max-height: 100%;
+            max-width: 100%;  
            }
         }
       }
