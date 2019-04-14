@@ -57,7 +57,7 @@ router.get('/', findAllArticles, (req, res) => {
 
 
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard', ensureAuthenticated, findAllArticles, (req, res) => {
+router.get('/dashboard',  findAllArticles, (req, res) => {
 
     res.render('dashboard', {
         // create variable name that contains users name to be used on the dashboard

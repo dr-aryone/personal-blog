@@ -5,9 +5,13 @@ $complimentary: #7fa7b8;
 $padding: 1rem;
 $border-radius: 1rem;
 
-$ipadPro: "only screen and (max-width: 900px)";
-$phoneXL: "only screen and (max-width: 600px)";
-$ipad: "only screen and (min-width: 750px)";
+// $ipadPro: "only screen and (min-width: 900px)";
+// $phoneXL: "only screen and (min-width: 600px)";
+// $ipad: "only screen and (min-width: 750px)";
+
+$ipadPro: "only screen and (min-width: 1025px)";
+$phoneXL: "only screen and (min-width: 415px)";
+$ipad: "only screen and (min-width: 769px)";
 
 html {
   font-size: 16px;
@@ -54,7 +58,7 @@ body {
 
   section.hero {
     
-      @media #{$ipad} {
+      @media #{$ipadPro} {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -69,7 +73,7 @@ body {
       justify-content: center;
 
 
-      @media #{$ipad} {
+      @media #{$ipadPro} {
         margin: 0;
         width: 30vw;
         justify-content: flex-start;
@@ -91,7 +95,7 @@ body {
       background-color: $secondary;
       text-transform: uppercase;
 
-        @media #{$ipad} {
+        @media #{$ipadPro} {
           position: relative;
           height: 10vh;
           font-size: 10vh;
@@ -117,7 +121,10 @@ body {
             align-items: center;
             padding: $padding;
             border-top: 1px solid rgb(94, 94, 94);
-            font-size: 1.5rem;
+            font-size: 5vw;
+            background-color: $complimentary;
+            margin: 1rem;
+            border-radius: $border-radius;
         
            .img-container {
                min-width: 30vw;
@@ -125,6 +132,7 @@ body {
                max-width: 30vw;
                max-height: 30vw;
                overflow: hidden;
+               margin-right: 1rem;
                
            
                 img {
@@ -133,16 +141,11 @@ body {
                 }
             }     
 
-            p {
-                padding: $padding;
-
-            }
-
             .article-tile-text {
               width: 100%;
               display: flex;
               padding: 0;
-              justify-content: center;
+              justify-content: flex-start;
               
             }
         }
@@ -290,27 +293,26 @@ body {
 
 
     .blogs-page {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      width: 80%;
+      width: 90%;
       margin: auto;
-      padding-left: 10vw;
       margin-top: 2rem;
-
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 2rem;
 
       @media #{$phoneXL} {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      padding-left: 0;
-}
+        grid-template-columns: repeat(2, 1fr);
+      }
 
+      @media #{$ipad} {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      span {
+        padding: 1rem 0;
+      }
 
       .article-box {
-        width: 20vw;
-        height: 15vw;
-        margin: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -318,16 +320,8 @@ body {
         text-align: center;
         color: $complimentary;
         background-color: rgb(224, 224, 224);
-       
-      @media #{$ipadPro} {
         padding: $padding;
-}
-
-      @media #{$phoneXL} {
-        width: 80vw;
-        height: 60vw;
-        padding: 0.5rem;
-      }
+        border-radius: $border-radius;
 
 
         .img-container {
@@ -336,8 +330,6 @@ body {
           overflow: hidden;
           display: flex;
           justify-content: center;
-          margin-bottom: 1rem;
-          
 
            img {
             border: 1px solid rgb(124, 124, 124); 
