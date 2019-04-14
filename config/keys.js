@@ -5,7 +5,7 @@ const mlabpass = process.env.MLAB_PASS;
 
 module.exports = {
   MongoURI:
-    `mongodb://fishj123:${mlabpass}@ds149885.mlab.com:49885/heroku_26921dvn`,
+    "mongodb://fishj123:" + mlabpass + "@ds149885.mlab.com:49885/heroku_26921dvn",
     
 };
 
