@@ -156,6 +156,8 @@ body section.latest-blogs .article-tile .img-container {
   max-height: 30vw;
   overflow: hidden;
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 @media only screen and (min-width: 769px) {
