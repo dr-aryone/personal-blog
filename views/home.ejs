@@ -13,16 +13,17 @@
 
     <% for(var i =0; i < articleTitle.length; i++) { %>
 
+
+  <a class="article-link">
+    <div class="article-tile">
+      <div class="img-container">
+        <img src="/images/blog-stock.jpg" alt="" />
+      </div>
+      <div class="article-tile-text">
+        <span class="title"><%= articleTitle[i] %></span>
+      </div>
+    </div>
+  </a>
     
-<a class="article-link">
-  <div class="article-tile">
-    <div class="img-container">
-      <img src="/images/hero-img.jpg" alt="" />
-    </div>
-    <div class="article-tile-text">
-      <span class="title"><%= articleTitle[i] %></span>
-    </div>
-  </div>
-</a>
     <% } %>
 </section>

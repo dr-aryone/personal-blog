@@ -27,7 +27,6 @@ body nav {
   display: flex;
   justify-content: flex-end;
   background-color: #f1485b;
-  margin-bottom: 2rem;
   box-shadow: 0px 1px 10px #202020;
 }
 
@@ -40,7 +39,23 @@ body nav ul li {
   padding: 1rem;
 }
 
-@media only screen and (min-width: 1025px) {
+body section.hero {
+  padding-top: 2rem;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+@media only screen and (min-width: 769px) {
+  body section.hero {
+    background-image: url(../images/edinburgh.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+  }
+}
+
+@media only screen and (min-width: 769px) {
   body section.hero {
     display: flex;
     justify-content: flex-start;
@@ -58,7 +73,13 @@ body section.hero .img-container {
   justify-content: center;
 }
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 769px) {
+  body section.hero .img-container {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
   body section.hero .img-container {
     margin: 0;
     width: 30vw;
@@ -70,7 +91,7 @@ body section.hero .img-container {
 body section.hero .img-container img {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 1rem;
+  border-radius: 5px;
 }
 
 body section.hero h3 {
@@ -82,11 +103,12 @@ body section.hero h3 {
   text-transform: uppercase;
 }
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 769px) {
   body section.hero h3 {
     position: relative;
-    height: 10vh;
-    font-size: 10vh;
+    font-size: calc(4rem + 0.5vw);
+    top: 3rem;
+    left: 2rem;
   }
 }
 
@@ -99,6 +121,14 @@ body section.latest-blogs {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 100vw;
+}
+
+@media only screen and (min-width: 769px) {
+  body section.latest-blogs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 body section.latest-blogs .article-tile {
@@ -106,10 +136,17 @@ body section.latest-blogs .article-tile {
   align-items: center;
   padding: 1rem;
   border-top: 1px solid #5e5e5e;
-  font-size: 5vw;
+  font-size: calc(1rem + 0.5vw);
   background-color: #7fa7b8;
   margin: 1rem;
-  border-radius: 1rem;
+  border-radius: 5px;
+}
+
+@media only screen and (min-width: 769px) {
+  body section.latest-blogs .article-tile {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 body section.latest-blogs .article-tile .img-container {
@@ -121,8 +158,20 @@ body section.latest-blogs .article-tile .img-container {
   margin-right: 1rem;
 }
 
+@media only screen and (min-width: 769px) {
+  body section.latest-blogs .article-tile .img-container {
+    min-width: 0;
+    min-height: 0;
+    width: 16vw;
+    height: 11vw;
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
+  }
+}
+
 body section.latest-blogs .article-tile .img-container img {
-  max-height: 100%;
+  min-width: 100%;
   max-width: 100%;
 }
 
@@ -131,6 +180,13 @@ body section.latest-blogs .article-tile .article-tile-text {
   display: flex;
   padding: 0;
   justify-content: flex-start;
+}
+
+@media only screen and (min-width: 769px) {
+  body section.latest-blogs .article-tile .article-tile-text {
+    justify-content: center;
+    margin: 1rem;
+  }
 }
 
 body .login-page {
@@ -176,7 +232,7 @@ body .dashboard-page .create-blog form input {
 body .dashboard-page .create-blog form button {
   margin: 1rem;
   background-color: #7fa7b8;
-  border-radius: 1rem;
+  border-radius: 5px;
   border: 1px solid black;
   padding: 0.5rem 1rem;
 }
@@ -225,6 +281,7 @@ body .blog-article {
   align-items: center;
   padding: 1rem;
   line-height: 1.5rem;
+  padding-top: 2rem;
 }
 
 body .blog-article h3 {
@@ -259,6 +316,7 @@ body .blogs-page {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 2rem;
+  padding-top: 2rem;
 }
 
 @media only screen and (min-width: 415px) {
@@ -286,7 +344,7 @@ body .blogs-page .article-box {
   color: #7fa7b8;
   background-color: #e0e0e0;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 5px;
 }
 
 body .blogs-page .article-box .img-container {
@@ -307,6 +365,7 @@ body .about-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 2rem;
 }
 
 body .about-page h3 {
