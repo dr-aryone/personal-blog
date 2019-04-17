@@ -1,10 +1,8 @@
 const express = require('express');
 const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
-
-
 //article model
-const Article = require("../models/Article");
+const { Article } = require("../models/Article");
 
 
 // instantiate variables ready to receive data

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
+
 
 const ArticleSchema = new mongoose.Schema({
     title: {
@@ -18,7 +20,6 @@ const ArticleSchema = new mongoose.Schema({
     time: {
         type: Date,
         default: Date.now,
-        required: true,
     },
     body: {
         type: String,
@@ -29,6 +30,17 @@ const ArticleSchema = new mongoose.Schema({
 });
 
 
+function validateArticle(article) {
+    const schema = {
+        title: Joi.string().min(2).max(255).required(),
+        author: Joi.string().min(2).max(255).required(),
+        body: Joi.string().min(2).max(5000).required()
+    }
+
+    return Joi.validate(article, schema);
+}
+
 const Article = mongoose.model('Article', ArticleSchema);
 
-module.exports = Article;
+module.exports.Article = Article;
+module.exports.validate = validateArticle;

@@ -17,6 +17,8 @@
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.15.6",
+    "joi": "^14.3.1",
+    "joi-objectid": "^2.0.0",
     "jquery": "^3.3.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.0",
