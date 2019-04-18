@@ -2,79 +2,36 @@ const express = require('express');
 const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
 //article model
-const { Article } = require("../models/Article");
+const { Article, validate } = require("../models/Article");
+const Joi = require('joi');
 
-
-// instantiate variables ready to receive data
-let articleBody = [];
-let articleTitle = [];
-let articleAuthor = [];
-let articleTime = [];
-let articleID = [];
-
-// wrap my database call functions in some middleware
-function findAllArticles(req, res, next){ 
-
-
-// retrieve the existing articles from the database
-function getArticleQuery() {
-    let query = Article.find();
-    return query;
-}
-
-// want to move this to another file and import it in using require 
-let query = getArticleQuery();
-query.exec(function (err, results) {
-    if (err)
-        return console.log(err);
-
-    for(var i = 0; i < results.length; i++) {
-        let id = String(results[i]._id);
-        if (!articleID.includes(id)) {
-                articleID.push(id);
-                articleTitle.push(results[i].title);
-                articleBody.push(results[i].body);
-                articleAuthor.push(results[i].author);
-                articleTime.push(results[i].time);
-        }
-    }
-
-    next();
-});
-
-}
-router.get('/', findAllArticles, (req, res) => {
+router.get('/', async (req, res) => {
+    const articles = await Article.find().sort('-time');
+    if (!articles) return res.status(400).send("Oops, something went wrong");
     res.render('home', {
-        articleBody: articleBody,
-        articleTitle: articleTitle,
-        articleAuthor: articleAuthor,
-        articleTime: articleTime
-
+        articles: articles,
     });
 })
+
 
 
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard',  findAllArticles, (req, res) => {
-
+router.get('/dashboard', async (req, res) => {
+    const articles = await Article.find().sort('-time');
+    if (!articles) return res.status(400).send("Oops, something went wrong");
     res.render('dashboard', {
-        // create variable name that contains users name to be used on the dashboard
-        // name: req.user.name
-        articleBody: articleBody,
-        articleTitle: articleTitle,
-        articleAuthor: articleAuthor,
-        articleTime: articleTime
-        
+        articles: articles,
     });
 
 
 })
 
 
-router.get('/blogs', (req, res) => {
+router.get('/blogs', async (req, res) => {
+    const articles = await Article.find().sort('-time');
+    if (!articles) return res.status(400).send("Oops, something went wrong");
     res.render('blogs', {
-        articleTitle: articleTitle,
-        
+        articles: articles,
     })
 })
 
@@ -83,74 +40,44 @@ router.get('/about', (req, res) => {
 })
 
 
-router.get('/blog-article/*', (req, res) => {
+router.get('/blog-article/:title', async (req, res) => {
+    const title = req.params.title.split('-').join(' ');
+    const article = await Article.findOne({ title: title});
+    if(!article) return res.status(404).send("Article not found");
 
     res.render('blog-article', {
-        articleBody: articleBody,
-        articleTitle: articleTitle,
-        articleAuthor: articleAuthor,
-        articleTime: articleTime,
-        url: req.url
+        article: article
     });
 })
 
 
 
 // Save an article to mongodb
-router.post('/post-article', (req, res) => {
-    const { title, author, time, body } = req.body;
-    let errors = []
-
-    // Check required fields
-    if (!title || !author || !time || !body) {
-        errors.push({ msg: "Please fill in all fields" });
-    }
-
-    if (errors.length > 0) {
-        console.log(req.body)
-        res.render("dashboard", {
-            errors,
-            title,
-            author,
-            time,
-            body,
-        });
-    } else {
+router.post('/post-article', async (req, res) => {
+    const { error } = Joi.validate(req.body);
+    if(error) return res.status(400).render('dashboard');
     //Validation passed
         const newArticle = new Article({
-            title,
-            author,
-            time,
-            body,
+            title: req.body.title,
+            author: req.body.author,
+            body: req.body.body,
         });
 
         //save user to database
-        newArticle
-            .save()
-            .then(article => {
-                req.flash(
-                    "success_msg",
-                    "You have posted a new article"
-                );
-                res.redirect("/");
-            })
-            .catch(err => console.log(err));
-}
+        await newArticle.save()
 
-
+        const articles = await Article.find().sort('-time');
+        res.render("dashboard", {
+            articles: articles
+        });
 });
 
-// Delete an article - how tf do i do this
-router.post('/delete-article', (req, res) => {
-    const { remove } = req.body;
-    
-    console.log(remove);
 
-
-    res.redirect('/');
+router.delete('/:id', async (req, res) => {
+    const article = await Article.findOneAndDelete({ _id: req.params.id });
+    if (!article) return res.status(404).send("This article does not exist");
+    res.send(article);
 })
-
-
 
 
 module.exports = router;

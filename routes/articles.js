@@ -7,7 +7,7 @@ const router = express.Router();
 const { Article, validate } = require("../models/Article");
 
 router.get('/', async (req, res) => {
-    const articles = await Article.find().sort('title');
+    const articles = await Article.find().sort('-time');
     res.send(articles);
 })
 

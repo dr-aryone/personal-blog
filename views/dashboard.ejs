@@ -11,7 +11,6 @@
         <form action="/post-article" method="POST">
             <input type="text" placeholder="Title" id="title" name="title">
             <input type="text" placeholder="Author" id="author" name="author">
-            <input type="datetime-local" id="time" name="time">
             <textarea id="body" cols="60" rows="30" name="body">
 
             </textarea>
@@ -23,20 +22,20 @@
     </div>
 
     <div class="article-list">
-       <% for(var i =0; i < articleTitle.length; i++) { %>
+       <% for(var i =0; i < articles.length; i++) { %>
 
         <div class="article-box">
             <div>
                 <img src="/images/hero-img.jpg" alt="">
             </div>
             <span> 
-                <%= articleTitle[i] %>
+                <%= articles[i].title %>
             </span>
             <span>
-                <%= articleAuthor[i] %>
+                <%= articles[i].author %>
             </span>
             <p>
-                <%= articleBody[i] %>
+                <%= articles[i].body %>
             </p>
             <form action="/delete-article" method="post">
                 <input type="submit" name="remove" id="remove" value="Delete" />

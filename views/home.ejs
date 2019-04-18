@@ -11,8 +11,8 @@
 
 <section class="latest-blogs">
 
-    <% for(var i =0; i < articleTitle.length; i++) { %>
 
+<% for(var i =0; i < articles.length; i++) { %>
 
   <a class="article-link">
     <div class="article-tile">
@@ -20,10 +20,10 @@
         <img src="/images/blog-stock.jpg" alt="" />
       </div>
       <div class="article-tile-text">
-        <span class="title"><%= articleTitle[i] %></span>
+        <span class="title"><%= articles[i].title %></span>
       </div>
     </div>
   </a>
-    
-    <% } %>
+
+  <% } %>
 </section>
