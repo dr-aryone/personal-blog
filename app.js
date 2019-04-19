@@ -1,3 +1,5 @@
+// this catches promise rejections so we dont need to use try catch blocks - must be at top of file
+require('express-async-errors');
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
@@ -7,11 +9,30 @@ const passport = require('passport');
 //Passport config
 require('./config/passport')(passport);
 require('dotenv').config();
+const winston = require('winston');
+
+
+// handle uncaught exceptions that happen outwith express 
+process.on('uncaughtException', (ex) => {
+console.log('We got an uncaught exception')
+winston.error(ex.message, ex);
+process.exit(1);
+});
+
+
+// handle unhandled promise rejections that happen outwith express 
+process.on('unhandledRejection', (ex) => {
+console.log('We got an unhandled rejection')
+winston.error(ex.message, ex);
+process.exit(1);
+});
+
+winston.add(winston.transports.File, { filename: 'logfile.log' });
 
 const app = new express();
 
-// MIDDLEWARE //
 
+// MIDDLEWARE //
 app.use(express.json());
 //EJS templating - the master template is layout.ejs
 app.use(expressLayouts);

@@ -34,7 +34,7 @@ function validateArticle(article) {
     const schema = {
         title: Joi.string().min(2).max(255).required(),
         author: Joi.string().min(2).max(255).required(),
-        body: Joi.string().min(2).max(5000).required()
+        body: Joi.string().min(10).max(5000).trim().required()
     }
 
     return Joi.validate(article, schema);

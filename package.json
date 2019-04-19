@@ -15,6 +15,7 @@
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-async-errors": "^3.1.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.15.6",
     "joi": "^14.3.1",
@@ -23,7 +24,8 @@
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"

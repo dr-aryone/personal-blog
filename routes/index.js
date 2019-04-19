@@ -52,32 +52,10 @@ router.get('/blog-article/:title', async (req, res) => {
 
 
 
-// Save an article to mongodb
-router.post('/post-article', async (req, res) => {
-    const { error } = Joi.validate(req.body);
-    if(error) return res.status(400).render('dashboard');
-    //Validation passed
-        const newArticle = new Article({
-            title: req.body.title,
-            author: req.body.author,
-            body: req.body.body,
-        });
-
-        //save user to database
-        await newArticle.save()
-
-        const articles = await Article.find().sort('-time');
-        res.render("dashboard", {
-            articles: articles
-        });
-});
 
 
-router.delete('/:id', async (req, res) => {
-    const article = await Article.findOneAndDelete({ _id: req.params.id });
-    if (!article) return res.status(404).send("This article does not exist");
-    res.send(article);
-})
+
+
 
 
 module.exports = router;
