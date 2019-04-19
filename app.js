@@ -1,21 +1,15 @@
-require("./startup/errors");
+require("./startup/errors")();
+const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-require("./startup/routes");
+const app = new express();
+require("./startup/routes")(app);
 require("./middleware/flash");
 require("./middleware/authentication");
 require("dotenv").config();
-require("./startup/mongodb");
-const express = require("express");
-const app = new express();
+require("./startup/mongodb")();
 
-app.use(express.json());
 
-//EJS templating - the master template is layout.ejs
-app.use(expressLayouts);
-app.set("view engine", "ejs");
 
-//Bodyparser
-app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 7500;
 

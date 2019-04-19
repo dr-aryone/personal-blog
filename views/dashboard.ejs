@@ -30,6 +30,10 @@
        <% for(var i =0; i < articles.length; i++) { %>
 
         <div class="article-box">
+
+            <div style="display: none;">
+                <%= articles[i]._id %>
+            </div>
             <div>
                 <img src="/images/hero-img.jpg" alt="">
             </div>
@@ -42,8 +46,8 @@
             <p>
                 <%= articles[i].body %>
             </p>
-            <form action="/delete-article" method="post">
-                <input type="submit" name="remove" id="remove" value="Delete" />
+            <form action="/api/articles" method="DELETE">
+                <input type="submit" name="delete" id="remove" value="Delete" />
             </form>
         </div>
         <% } %>

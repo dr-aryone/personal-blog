@@ -32,7 +32,8 @@ router.post('/', async (req, res) => {
     });
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
+    console.log(req.body._id)
     const article = await Article.findOneAndDelete({ _id: req.params.id });
     if (!article) return res.status(404).send("This article does not exist");
     res.send(article);
