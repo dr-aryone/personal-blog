@@ -8,9 +8,14 @@
     </div>
 
     <div class="create-blog">
-        <form action="/api/articles" method="POST">
+        <form action="/api/articles" method="POST" enctype="multipart/form-data">
+            <label for="title">Article Title</label>
             <input type="text" placeholder="Title" id="title" name="title">
+            <label for="author">Article Author</label>
             <input type="text" placeholder="Author" id="author" name="author">
+            <label for="file">Choose File</label>
+            <input type="file" name="file" id="file" class="custom-file-input">
+            
             <textarea id="body" cols="60" rows="30" name="body">
 
             </textarea>

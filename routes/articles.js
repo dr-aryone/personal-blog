@@ -3,12 +3,12 @@ const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
 const Joi = require('joi');
 
-
 //article model
 const { Article, validate } = require("../models/Article");
 
 // Save an article to mongodb
 router.post('/', async (req, res) => {
+    console.log({file: req.file});
     const { error } = validate(req.body);
     if (error) {
         const articles = await Article.find().sort('-time');
@@ -37,7 +37,5 @@ router.delete('/:id', async (req, res) => {
     if (!article) return res.status(404).send("This article does not exist");
     res.send(article);
 })
-
-
 
 module.exports = router;

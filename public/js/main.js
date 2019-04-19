@@ -14,6 +14,6 @@ function setHREF() {
 
     for(var i=0; i< titleList.length; i++) {
         let link = titleList[i];
-        articleLink[i].setAttribute('href', `/blog-article/${link}`)
+        articleLink[i].setAttribute('href', `/blogs/${link}`)
     }
 }

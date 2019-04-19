@@ -6,13 +6,12 @@ const { Article, validate } = require("../models/Article");
 const Joi = require('joi');
 
 router.get('/', async (req, res) => {
-    const articles = await Article.find().sort('-time');
+    const articles = await Article.find().limit(3).sort('-time');
     if (!articles) return res.status(400).send("Oops, something went wrong");
     res.render('home', {
         articles: articles,
     });
 })
-
 
 
 // ensureAuthenticated, is required to auth the page
@@ -40,7 +39,7 @@ router.get('/about', (req, res) => {
 })
 
 
-router.get('/blog-article/:title', async (req, res) => {
+router.get('/blogs/:title', async (req, res) => {
     const title = req.params.title.split('-').join(' ');
     const article = await Article.findOne({ title: title});
     if(!article) return res.status(404).send("Article not found");
@@ -49,12 +48,6 @@ router.get('/blog-article/:title', async (req, res) => {
         article: article
     });
 })
-
-
-
-
-
-
 
 
 

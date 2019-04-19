@@ -3,6 +3,7 @@ html {
   color: #f7efed;
   background-color: #33546d;
   font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 html a, html a:hover {
@@ -41,6 +42,7 @@ body nav ul li {
 
 body section.hero {
   padding-top: 2rem;
+  margin-bottom: 2rem;
   width: 100vw;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -114,6 +116,10 @@ body section.hero h3 {
 
 body section.hero p {
   position: relative;
+  text-align: center;
+}
+
+body #latest-blogs {
   text-align: center;
 }
 
