@@ -187,6 +187,10 @@ body .login-page form * {
   margin: 1rem;
 }
 
+body .dashboard-page {
+  margin-top: 2rem;
+}
+
 body .dashboard-page .content-block-1 {
   display: flex;
   flex-direction: column;
