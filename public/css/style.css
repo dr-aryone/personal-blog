@@ -261,7 +261,7 @@ body .dashboard-page .article-list .article-box {
   margin: 2rem;
 }
 
-body .dashboard-page .article-list .article-box div {
+body .dashboard-page .article-list .article-box .img-container {
   width: 10vw;
   height: 10vw;
   overflow: hidden;
@@ -270,7 +270,7 @@ body .dashboard-page .article-list .article-box div {
   margin-bottom: 1rem;
 }
 
-body .dashboard-page .article-list .article-box div img {
+body .dashboard-page .article-list .article-box .img-container img {
   max-width: 100%;
   max-height: 100%;
 }
@@ -279,8 +279,52 @@ body .dashboard-page .article-list .article-box span {
   margin-bottom: 1rem;
 }
 
-body .dashboard-page .article-list .article-box p {
+body .dashboard-page .article-list .article-box .article-body {
   line-height: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+body .dashboard-page .article-list .article-box .delete-button {
+  border: none;
+  text-transform: uppercase;
+  color: #f7efed;
+  background-color: #f1485b;
+  padding: 0.5rem 2rem;
+}
+
+body .dashboard-page .article-list .article-box .confirm-delete-modal {
+  display: none;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+body .dashboard-page .article-list .article-box .confirm-delete-modal p {
+  margin-bottom: 1rem;
+}
+
+body .dashboard-page .article-list .article-box .confirm-delete-modal form {
+  border: 0;
+  background-color: #f1485b;
+  margin-bottom: 1rem;
+}
+
+body .dashboard-page .article-list .article-box .confirm-delete-modal form input {
+  padding: 0.5rem 2rem;
+  background-color: inherit;
+  border: none;
+  text-transform: uppercase;
+  color: #f7efed;
+}
+
+body .dashboard-page .article-list .article-box .confirm-delete-modal button {
+  border: 0;
+  padding: 0.5rem 2rem;
+  text-transform: uppercase;
+}
+
+body .dashboard-page .article-list .article-box input:hover {
+  cursor: pointer;
 }
 
 body .blog-article {
