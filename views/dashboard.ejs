@@ -27,6 +27,16 @@
     </div>
 
     <div class="article-list">
+
+        <%if(!articles) { %> 
+
+            <p>No articles to display</p>
+
+        <% } else { %> 
+        
+      
+
+        
        <% for(var i =0; i < articles.length; i++) { %>
 
         <div class="article-box">
@@ -46,10 +56,12 @@
             <p>
                 <%= articles[i].body %>
             </p>
-            <form action="/api/articles" method="DELETE">
+            <form action="/api/articles/ <%= articles[i]._id %>?_method=DELETE" method="POST">
                 <input type="submit" name="delete" id="remove" value="Delete" />
             </form>
         </div>
+        <% } %>
+
         <% } %>
     </div>
 </section>

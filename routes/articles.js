@@ -2,6 +2,7 @@ const express = require('express');
 const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
 const Joi = require('joi');
+const methodOverride = require('method-override');
 
 //article model
 const { Article, validate } = require("../models/Article");
@@ -32,11 +33,14 @@ router.post('/', async (req, res) => {
     });
 });
 
-router.delete('/', async (req, res) => {
-    console.log(req.body._id)
-    const article = await Article.findOneAndDelete({ _id: req.params.id });
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id.trim();
+    const article = await Article.findOneAndDelete({ _id: id });
     if (!article) return res.status(404).send("This article does not exist");
-    res.send(article);
+    const articles = await Article.find().sort('-time');
+    res.render('dashboard', {
+        articles: articles
+    });
 })
 
 module.exports = router;
