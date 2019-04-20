@@ -1,14 +1,5 @@
 <h3 style="text-align: center; padding-top: 2rem;">Blogs</h3>
 
 <section class="blogs-page">
-   <% for(var i=0; i< articles.length; i++) {%>
-    <a class="article-link">
-        <div class="article-box">
-            <div class="img-container">
-                <img src="/images/blog-stock.jpg" alt="">
-            </div>
-            <span class="title"><%=articles[i].title%></span>
-        </div>
-    </a>
-    <%}%>
+<% include ./partials/article-tile %>
 </section>

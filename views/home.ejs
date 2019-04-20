@@ -9,21 +9,10 @@
  
 </section>
 <h3 id="latest-blogs">Latest Blogs</h3>
+
 <section class="latest-blogs">
-
-
-<% for(var i =0; i < articles.length; i++) { %>
-
-  <a class="article-link">
-    <div class="article-tile">
-      <div class="img-container">
-        <img src="/images/blog-stock.jpg" alt="" />
-      </div>
-      <div class="article-tile-text">
-        <span class="title"><%= articles[i].title %></span>
-      </div>
-    </div>
-  </a>
-
-  <% } %>
+<% include ./partials/article-tile %>
 </section>
+<button id="view-all-blogs">
+  View all blogs
+</button>
