@@ -4,6 +4,7 @@ html {
   background-color: #33546d;
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 html a, html a:hover {
@@ -22,6 +23,7 @@ html h3 {
 html .sitewide-container {
   max-width: 1400px;
   margin: auto;
+  min-height: 100vh;
 }
 
 .article-box .img-container-tile {
@@ -384,4 +386,7 @@ body .about-page .social-icons i {
 body footer {
   min-height: 15rem;
   background-color: #f1485b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

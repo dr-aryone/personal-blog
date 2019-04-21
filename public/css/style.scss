@@ -15,6 +15,7 @@ html {
   background-color: $primary;
   font-family: "Open Sans", sans-serif;
   overflow-x:hidden;
+  min-height: 100vh;
   
   a, a:hover {
     text-decoration: none;
@@ -32,6 +33,7 @@ html {
   .sitewide-container {
     max-width: 1400px;
     margin: auto;
+    min-height: 100vh;
   }
 }
 
@@ -420,5 +422,8 @@ body {
     footer {
       min-height: 15rem;
       background-color: $secondary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 }
