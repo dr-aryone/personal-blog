@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 //user model
-const User = require("../models/User");
+const { User, validate } = require("../models/User");
 
 // render login page
 router.get("/login", (req, res) => {
@@ -20,98 +20,52 @@ router.get("/register", (req, res) => {
 
 
 //register handle - register form is a post request
-router.post("/register", (req, res) => {
-  // use destructuring to get variables from the request body
-  const { name, email, password, password2 } = req.body;
-  let errors = [];
-
-  // Check required fields
-  if (!name || !email || !password || !password2) {
-    errors.push({ msg: "Please fill in all fields" });
-  }
-
-  //Check passwords match
-  if (password !== password2) {
-    errors.push({ msg: "Passwords must match" });
-  }
-
-  //Check password length
-  if (password.length < 6) {
-    errors.push({ msg: "Password must be at least 6 characters" });
-  }
-
-  // if there are errors do this
-  if (errors.length > 0) {
-    res.render("register", {
-      errors,
-      name,
-      email,
-      password,
-      password2,
-    });
-  } else {
-    //Validation passed
-
+router.post("/register", async (req, res) => {
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
     // check for existing user in database
-    User.findOne({ email: email }).then(user => {
-      if (user) {
-        errors.push({ msg: "Email is already registered" });
-        console.log("aaaaaaah");
-        //user already exists - render register page with error messages - send along all fields so correct ones are not lost on re-render
-        res.render("register", {
-          errors,
-          name,
-          email,
-          password,
-          password2,
-        });
-      } else {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) return res.status(400).send("This user already exists");
+
         //create a new user
         const newUser = new User({
-          name,
-          email,
-          password,
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password,
         });
-
         //Hash password - this is the bcrypt stuff
-        bcrypt.genSalt(10, (err, salt) =>
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            //Set password to hashed
-            newUser.password = hash;
+        console.log(newUser);
+        const salt = await bcrypt.genSalt(10);
+        newUser.password = await bcrypt.hash(newUser.password, salt);
             
-            //save user to database
-            newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  "success_msg",
-                  "You are now registered and can log in"
-                );
-                res.redirect("/users/login");
-              })
-              .catch(err => console.log(err));
-          })
-        );
-      }
-    });
-  }
-});
+        //save user to database
+        await newUser.save()
+        const token = newUser.generateAuthToken();
+        res.header('x-auth-token', token).redirect("/dashboard");
+
+      });
+
 
 // Login Handle
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/users/login",
-    failureFlash: true,
-  })(req, res, next);
+router.post("/login", async (req, res, next) => {
+  
+  // do I want to update validate user here 
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send("Email or password is incorrect");
+
+  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  if (!validPassword) return res.status(400).send("Invalid email or password.");
+
+  const token = user.generateAuthToken();
+  res.header('x-auth-token', token).redirect('/dashboard');
+  console.log(res.header);
+
 });
 
 
 // logout handle
 router.get('/logout', (req, res) => {
   req.logOut();
-  req.flash('success_msg', 'You logged out');
   res.redirect('/users/login');
 })
 

@@ -3,13 +3,13 @@ const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
 const Joi = require('joi');
 const methodOverride = require('method-override');
+const { auth } = require('../middleware/auth');
 
 //article model
 const { Article, validate } = require("../models/Article");
 
 // Save an article to mongodb
 router.post('/', async (req, res) => {
-    console.log({file: req.file});
     const { error } = validate(req.body);
     if (error) {
         const articles = await Article.find().sort('-time');
