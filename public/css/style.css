@@ -166,7 +166,11 @@ body #view-all-blogs {
   text-transform: uppercase;
   margin-bottom: 2rem;
   background-color: #7fa7b8;
-  padding: 0.5rem 2rem;
+}
+
+body #view-all-blogs a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
 }
 
 body .login-page {

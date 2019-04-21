@@ -181,7 +181,13 @@ body {
       text-transform: uppercase;
       margin-bottom: 2rem;
       background-color: $complimentary;
-      padding: 0.5rem 2rem;
+      
+
+
+      a {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+      }
     }
 
     .login-page {
