@@ -5,6 +5,7 @@ const router = express.Router();
 const { Article, validate } = require("../models/Article");
 const Joi = require('joi');
 const { auth } = require('../middleware/auth');
+const { gfs } = require('../routes/images');
 
 router.get('/', async (req, res) => {
     const articles = await Article.find().limit(3).sort('-time');

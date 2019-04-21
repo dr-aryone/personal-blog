@@ -27,6 +27,9 @@ const ArticleSchema = new mongoose.Schema({
         minlength: 2,
         maxlength: 5000,
     },
+    image: {
+        type: 'Mixed',
+    }
 });
 
 

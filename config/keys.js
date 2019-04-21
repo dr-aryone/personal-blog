@@ -9,3 +9,4 @@ const jwtPrivateKey = process.env.jwtPrivateKey;
     
 module.exports.jwtPrivateKey = jwtPrivateKey;
 module.exports.MongoURI = MongoURI; 
+module.exports.mlabpass = mlabpass;
