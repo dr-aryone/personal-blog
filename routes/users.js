@@ -58,7 +58,6 @@ router.post("/login", async (req, res, next) => {
 
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).redirect('/dashboard');
-  console.log(res.header);
 
 });
 
