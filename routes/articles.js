@@ -10,8 +10,7 @@ const { upload } = require('../routes/images.js');
 const { Article, validate } = require("../models/Article");
 
 // Save an article to mongodb
-router.post("/", upload.single("file"), async (req, res) => {
-  console.log(req.file);
+router.post("/", upload.single("file"), ensureAuthenticated, async (req, res) => {
   const { error } = validate(req.body);
   if (error) {
     const articles = await Article.find().sort("-time");
@@ -36,7 +35,7 @@ router.post("/", upload.single("file"), async (req, res) => {
   });
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', ensureAuthenticated, async (req, res) => {
     const id = req.params.id.trim();
     const article = await Article.findOneAndDelete({ _id: id });
     if (!article) return res.status(404).send("This article does not exist");

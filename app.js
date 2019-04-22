@@ -1,13 +1,13 @@
 require("./startup/errors")();
 const express = require("express");
-const expressLayouts = require("express-ejs-layouts");
 const app = new express();
 require("./startup/routes")(app);
 require("./middleware/flash");
-require("./middleware/authentication");
 require("dotenv").config();
 require("./startup/mongodb")();
 
+
+module.exports.app = app;
 
 const PORT = process.env.PORT || 7500;
 

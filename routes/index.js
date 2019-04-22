@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 
 
 // ensureAuthenticated, is required to auth the page
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', ensureAuthenticated, async (req, res) => {
     const articles = await Article.find().sort('-time');
     if (!articles) return res.status(400).send("Oops, something went wrong");
     res.render('dashboard', {

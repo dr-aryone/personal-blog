@@ -10,7 +10,7 @@ const Grid = require("gridfs-stream");
 const methodOverride = require("method-override");
 const { mlabpass } = require('../config/keys');
  
-
+// MOVE TO ROUTES MODULE WITH THE BODYPARSER MIDDLEWARE
 const app = express();
 
 // Middleware

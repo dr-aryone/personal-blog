@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const session = require('express-session');
 
 //user model
 const { User, validate } = require("../models/User");
@@ -21,8 +22,8 @@ router.get("/register", (req, res) => {
 
 //register handle - register form is a post request
 router.post("/register", async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  // const { error } = validate(req.body);
+  // if (error) return res.status(400).send(error.details[0].message);
     // check for existing user in database
     const user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).send("This user already exists");
@@ -41,6 +42,7 @@ router.post("/register", async (req, res) => {
         //save user to database
         await newUser.save()
         const token = newUser.generateAuthToken();
+        res.session.token = token;
         res.header('x-auth-token', token).redirect("/dashboard");
 
       });
@@ -49,15 +51,22 @@ router.post("/register", async (req, res) => {
 // Login Handle
 router.post("/login", async (req, res, next) => {
   
-  // do I want to update validate user here 
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("Email or password is incorrect");
+  
+  // const user = await User.findOne({ email: req.body.email });
+  // if (!user) return res.status(400).send("Email or password is incorrect");
 
-  const validPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!validPassword) return res.status(400).send("Invalid email or password.");
+  // const validPassword = await bcrypt.compare(req.body.password, user.password);
+  // if (!validPassword) return res.status(400).send("Invalid email or password.");
 
-  const token = user.generateAuthToken();
-  res.header('x-auth-token', token).redirect('/dashboard');
+  // const token = user.generateAuthToken();
+
+  // res.set('x-auth-token', token).redirect('/dashboard');
+
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/users/login",
+    failureFlash: true,
+  })(req, res, next);
 
 });
 
