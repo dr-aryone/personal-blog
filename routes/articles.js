@@ -22,8 +22,8 @@ router.post("/", upload.single("file"), ensureAuthenticated, async (req, res) =>
   const newArticle = new Article({
     title: req.body.title,
     author: req.body.author,
+    image: req.body.image,
     body: req.body.body,
-    image: req.file.filename,
   });
 
   //save user to database

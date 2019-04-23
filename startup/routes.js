@@ -6,6 +6,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const app = new express();
 const passport = require('passport');
+// const bodyParser = require("body-parser");
 //Passport config
 require('../config/passport')(passport);
 
@@ -17,6 +18,7 @@ module.exports = function(app) {
     app.set("view engine", "ejs");
     app.use(expressLayouts);
     app.use(express.urlencoded({ extended: false }));
+    // app.use(bodyParser.json());
     app.use(methodOverride('_method'))
     // Express session
     app.use(session({

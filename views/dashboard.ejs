@@ -8,13 +8,12 @@
     </div>
 
     <div class="create-blog">
-        <form action="/api/articles" method="POST" enctype="multipart/form-data">
+        <form action="/api/articles" method="POST">
             <label for="title">Article Title</label>
             <input type="text" placeholder="Title" id="title" name="title">
             <label for="author">Article Author</label>
             <input type="text" placeholder="Author" id="author" name="author">
-            <input type="file" name="file" id="file" class="custom-file-input">
-            
+            <input type="text" placeholder="Image url" id="image" name="image">
             <textarea id="body" cols="60" rows="30" name="body"></textarea>
             <button type="submit">
                 Post Article
@@ -44,7 +43,7 @@
                 <%= articles[i]._id %>
             </div>
             <div class="img-container">
-                <img src="/images/hero-img.jpg" alt="">
+                <img src="<%= articles[i].image %>" alt="">
             </div>
             <span> 
                 <%= articles[i].title %>

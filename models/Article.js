@@ -28,7 +28,8 @@ const ArticleSchema = new mongoose.Schema({
         maxlength: 5000,
     },
     image: {
-        type: 'Mixed',
+        type: String,
+        required: true,
     }
 });
 
@@ -37,7 +38,8 @@ function validateArticle(article) {
     const schema = {
         title: Joi.string().min(2).max(255).required(),
         author: Joi.string().min(2).max(255).required(),
-        body: Joi.string().min(10).max(5000).trim().required()
+        body: Joi.string().min(10).max(5000).trim().required(),
+        image: Joi.string().required()
     }
 
     return Joi.validate(article, schema);
