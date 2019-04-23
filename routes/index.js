@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     if (!articles) return res.status(400).send("Oops, something went wrong");
     res.render('home', {
         articles: articles,
+        loggedIn: req.user
     });
 })
 
@@ -20,8 +21,9 @@ router.get('/', async (req, res) => {
 router.get('/dashboard', ensureAuthenticated, async (req, res) => {
     const articles = await Article.find().sort('-time');
     if (!articles) return res.status(400).send("Oops, something went wrong");
-    res.render('dashboard', {
-        articles: articles,
+    res.render("dashboard", {
+      articles: articles,
+      loggedIn: req.user,
     });
 
 
@@ -31,13 +33,16 @@ router.get('/dashboard', ensureAuthenticated, async (req, res) => {
 router.get('/blogs', async (req, res) => {
     const articles = await Article.find().sort('-time');
     if (!articles) return res.status(400).send("Oops, something went wrong");
-    res.render('blogs', {
-        articles: articles,
-    })
+    res.render("blogs", {
+      articles: articles,
+      loggedIn: req.user,
+    });
 })
 
 router.get('/about', (req, res) => {
-    res.render('about');
+    res.render("about", {
+      loggedIn: req.user,
+    });
 })
 
 
@@ -47,7 +52,9 @@ router.get('/blogs/:title', async (req, res) => {
     if(!article) return res.status(404).send("Article not found");
 
     res.render('blog-article', {
-        article: article
+        article: article,
+        loggedIn: req.user
+
     });
 })
 

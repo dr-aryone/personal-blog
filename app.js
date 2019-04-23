@@ -6,7 +6,6 @@ require("./middleware/flash");
 require("dotenv").config();
 require("./startup/mongodb")();
 
-
 module.exports.app = app;
 
 const PORT = process.env.PORT || 7500;

@@ -175,6 +175,7 @@ body #view-all-blogs a {
 }
 
 body .login-page {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,8 +187,38 @@ body .login-page h1 {
 
 body .login-page form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+}
+
+@media only screen and (min-width: 1025px) {
+  body .login-page form {
+    flex-direction: row;
+  }
+}
+
+body .login-page form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 1025px) {
+  body .login-page form .form-group {
+    flex-direction: row;
+  }
+}
+
+body .login-page form input {
+  border: 0;
+  padding: 0.5rem 1rem;
+}
+
+body .login-page form button {
+  border: none;
+  text-transform: uppercase;
+  margin: 2rem auto;
+  background-color: #7fa7b8;
+  padding: 0.5rem 2rem;
 }
 
 body .login-page form * {

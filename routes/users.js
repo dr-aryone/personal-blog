@@ -9,13 +9,17 @@ const { User, validate } = require("../models/User");
 
 // render login page
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", {
+    loggedIn: req.user,
+  });
 });
 
 
 // render register page
 router.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", {
+    loggedIn: req.user,
+  });
 });
 
 
@@ -35,7 +39,6 @@ router.post("/register", async (req, res) => {
           password: req.body.password,
         });
         //Hash password - this is the bcrypt stuff
-        console.log(newUser);
         const salt = await bcrypt.genSalt(10);
         newUser.password = await bcrypt.hash(newUser.password, salt);
             
@@ -43,28 +46,19 @@ router.post("/register", async (req, res) => {
         await newUser.save()
         const token = newUser.generateAuthToken();
         res.session.token = token;
-        res.header('x-auth-token', token).redirect("/dashboard");
+        res.header("x-auth-token", token).redirect("/dashboard", {
+          loggedIn: req.user,
+        });
 
       });
 
 
 // Login Handle
 router.post("/login", async (req, res, next) => {
-  
-  
-  // const user = await User.findOne({ email: req.body.email });
-  // if (!user) return res.status(400).send("Email or password is incorrect");
-
-  // const validPassword = await bcrypt.compare(req.body.password, user.password);
-  // if (!validPassword) return res.status(400).send("Invalid email or password.");
-
-  // const token = user.generateAuthToken();
-
-  // res.set('x-auth-token', token).redirect('/dashboard');
 
   passport.authenticate("local", {
     successRedirect: "/dashboard",
-    failureRedirect: "/users/login",
+    failureRedirect: "/users/login", 
     failureFlash: true,
   })(req, res, next);
 
@@ -74,7 +68,7 @@ router.post("/login", async (req, res, next) => {
 // logout handle
 router.get('/logout', (req, res) => {
   req.logOut();
-  res.redirect('/users/login');
+  res.redirect("/users/login");
 })
 
 module.exports = router;

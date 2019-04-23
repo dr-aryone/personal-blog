@@ -19,14 +19,20 @@ function setHREF() {
     }
 }
 
+
 // display modal when delete button clicked on dashboard article 
 for(var i =0; i < deleteButton.length; i++) {
-    deleteButton[i].addEventListener('click', () => {
-        for(var j = 0; j < confirmDeleteModal.length; j++) {
-            confirmDeleteModal[j].style.display = 'flex';
-        }
-})
+    deleteButton[i].addEventListener('click', showModal)
+    
 }
+
+
+function showModal() {
+    for(var i =0; i < deleteButton.length; i++) {
+    confirmDeleteModal[i].style.display = "flex";
+    }
+}
+
 
 // remove modal when cancel button clicked on dashboard article
 for (var i = 0; i < cancelDelete.length; i++) {
