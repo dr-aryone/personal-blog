@@ -16,6 +16,7 @@ router.post("/", upload.single("file"), ensureAuthenticated, async (req, res) =>
     const articles = await Article.find().sort("-time");
     res.status(400).render("dashboard", {
       articles: articles,
+      loggedIn: req.user,
     });
   }
   //Validation passed
@@ -32,6 +33,7 @@ router.post("/", upload.single("file"), ensureAuthenticated, async (req, res) =>
   const articles = await Article.find().sort("-time");
   res.render("dashboard", {
     articles: articles,
+    loggedIn: req.user,
   });
 });
 
@@ -41,7 +43,8 @@ router.delete('/:id', ensureAuthenticated, async (req, res) => {
     if (!article) return res.status(404).send("This article does not exist");
     const articles = await Article.find().sort('-time');
     res.render('dashboard', {
-        articles: articles
+        articles: articles,
+        loggedIn: req.user,
     });
 })
 

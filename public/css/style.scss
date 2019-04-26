@@ -403,6 +403,7 @@ body {
 
       p {
         width: 80vw;
+        white-space: pre-wrap;
 
         @media #{$ipad} {
           width: 70%;

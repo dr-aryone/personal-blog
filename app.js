@@ -5,6 +5,7 @@ require("./startup/routes")(app);
 require("./middleware/flash");
 require("dotenv").config();
 require("./startup/mongodb")();
+require('./startup/prod')(app);
 
 module.exports.app = app;
 

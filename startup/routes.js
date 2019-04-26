@@ -22,9 +22,10 @@ module.exports = function(app) {
     app.use(methodOverride('_method'))
     // Express session
     app.use(session({
-        secret: 'secret',
+        secret: 'sesdfSSScrsdfetgasv',
         resave: true,
         saveUninitialized: true,
+        name: 'user',
     }))
     // Passport middleware
     app.use(passport.initialize());

@@ -369,6 +369,7 @@ body .blog-article div span {
 
 body .blog-article p {
   width: 80vw;
+  white-space: pre-wrap;
 }
 
 @media only screen and (min-width: 769px) {
