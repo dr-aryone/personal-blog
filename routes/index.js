@@ -25,8 +25,6 @@ router.get('/dashboard', ensureAuthenticated, async (req, res) => {
       articles: articles,
       loggedIn: req.user,
     });
-
-
 })
 
 
